@@ -7,8 +7,8 @@ from tasks import resize_image
 
 app = FastAPI()
 
-@app.post('/')
-async def root(request: Request, file: UploadFile = File(...)):
+@app.post('/resize')
+async def resize(request: Request, file: UploadFile = File(...)):
     if file.content_type:
         payload = await file.read()
         payload_str = base64.b64encode(payload).decode('ascii')

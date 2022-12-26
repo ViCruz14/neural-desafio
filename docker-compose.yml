@@ -2,10 +2,10 @@ version: '3'
 services:
 
   redis:
-    image: redis:latest
+    image: redis:7.0
   
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq:3.11
 
   web:
     build:
