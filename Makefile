@@ -5,3 +5,7 @@ up:
 .PHONY: test
 test:
 	docker compose exec web pytest --disable-warnings
+
+.PHONY: down
+down:
+	docker compose down

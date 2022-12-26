@@ -11,14 +11,14 @@ Criar uma API que recebe uma imagem e utiliza um sistema de filas para mudar seu
 - Pytest - Para testes unitários
 
 ## Fluxo geral
-Após bater na rota raíz, a imagem é transformada em uma string base64 e passada para a função resize_image que é uma task Celery, responsável por enviar a solicitação a uma fila do RabbitMQ com o método Delay. O resultado conseguimos acessar por conta do redis, pelo método get. A imagem é tranformada de novo para bytes e retornada na response.
+Após bater na rota raíz, a imagem é transformada em uma string base64 e passada para a função resize_image que é uma task Celery, responsável por enviar a solicitação a uma fila do RabbitMQ com o método Delay. O resultado conseguimos acessar por conta do redis, pelo método get. A imagem é tranformada de novo para bytes e retornada na response
 
 ## Pré Requisitos para utilizar
 Docker (> 20.10) e Docker Compose (> 2.8) instalados. 
 Para mais informações de instalação acesse https://docs.docker.com/get-docker/
 
 ## Como rodar
-Com os pré requisitos instalados, clonar e projeto e rodar o comado 'make up' dentro do diretório
+Com os pré requisitos instalados, clonar o projeto e rodar o comado 'make up' dentro do diretório. Para parar a aplicação basta rodar 'make down'
 
 ## Como rodar os testes unitários
 Rodar o comando 'make test' dentro do diretório do projeto
@@ -43,8 +43,8 @@ curl --location --request POST 'http://127.0.0.1:8000' \
 ### *Se o tamanho for parametrizável como você mudaria a sua arquitetura?*
 Usaria um campo extra 'size' na request, passaria ele de parâmetro para a função resize_image e utilizaria esse valor na função de resize do Pillow
 ### *Qual a complexidade da sua solução?*
-Tentei fazer o mais simples possível, deixei a maior parte das configurações como padrão. A solução em si consiste em apenas dois arquivos (main e tasks) que juntos não somam 50 linhas e são fáceis de manusear.  
+Tentei fazer o mais simples possível, deixei a maior parte das configurações como padrão. A solução em si consiste em apenas dois arquivos (main e tasks) que juntos não somam 50 linhas e são fáceis de manusear
 ### *É possível melhorar a performance da solução? Como as melhorias impactam a leitura e manutenção do código?*
-É sim. Como comentei, utilizei as configurações padrão, mas é possivel modificar campos do Celery como Timeout, número de workers, quantidade de filas e também do FastAPI além de configurar variáveis de ambientes. Nesse caso, utilizaria um arquivo separado de configuração e um .env para não poluir e deixar as coisas separadas, facilitando alterações futuras. Na parte de teste, fiz apenas um pra testar a função principal do desafio, mas faria também testes da API, testando diferentes respostas para situações diferentes como request em branco ou tipo de arquivo inválido.
+É sim. Como comentei, utilizei as configurações padrão, mas é possivel modificar campos do Celery como Timeout, número de workers, quantidade de filas e também do FastAPI além de configurar variáveis de ambientes. Nesse caso, utilizaria um arquivo separado de configuração e um .env para não poluir e deixar as coisas separadas, facilitando alterações futuras. Na parte de teste, fiz apenas um pra testar a função principal do desafio, mas faria também testes da API, testando diferentes respostas para situações diferentes como request em branco ou tipo de arquivo inválido
 ### *De que forma o sistema pode escalar com a arquitetura planejada*
-Como utilizei o Celery, caso seja necessário escalar a aplicação é simples de fazer, adicionando novas rotas no main e novas funções em tasks. Além disso, podemos facilmente aumentar o número de workers e configurar mais filas no rabbitmq.
+Como utilizei o Celery, caso seja necessário escalar a aplicação é simples de fazer, adicionando novas rotas no main e novas funções em tasks. Além disso, podemos facilmente aumentar o número de workers e configurar mais filas no rabbitmq
