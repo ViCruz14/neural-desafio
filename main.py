@@ -16,6 +16,6 @@ async def resize(request: Request, file: UploadFile = File(...)):
         async_result = resize_image.delay(payload_str).get()
         image_bytes = base64.b64decode(async_result)
 
-        return Response(content=image_bytes, media_type="image/png")
+        return Response(content=image_bytes, media_type="image")
     else:
         return Response(status_code=HTTPStatus.NO_CONTENT)
