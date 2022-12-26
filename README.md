@@ -32,9 +32,11 @@ Rodar o comando 'make test' dentro do diretório do projeto
 5. Enviar a solicitação com método POST no ip local, porta 8000
 
 ### Com cURL:
-1. Utilize o seguinte comando, substituindo o caminho da imagem pelo path do arquivo JPG ou PNG a partir da sua máquina. Troque o <FILE> pelo nome que desejar para a imagem redimensionada, resultado da request (não esqueça de usar a mesma extensão que o arquivo de input). O arquivo será criado na pasta do projeto:
+1. Utilize o seguinte comando, substituindo o caminho da imagem pelo path do arquivo JPG ou PNG a partir da sua máquina. Troque o \<FILE\> pelo nome que desejar para a imagem redimensionada, resultado da request (não esqueça de usar a mesma extensão que o arquivo de input). O arquivo será criado na pasta do projeto:
 ``` 
-curl -L -X POST 'http://127.0.0.1:8000/resize' -F 'file=@"/home/pipa/Imagens/admin.jpeg"' --output <FILE>
+curl -L -X POST 'http://127.0.0.1:8000/resize' \
+-F 'file=@"/home/pipa/Imagens/admin.jpeg"' \
+-o <FILE>
 ```
 
 ## Extras propostos
