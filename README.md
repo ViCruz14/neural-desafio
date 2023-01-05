@@ -29,7 +29,7 @@ Rodar o comando 'make test' dentro do diretório do projeto
 2. Marcar a opção 'form-data'
 3. Em 'key' Utilizar como formato o tipo 'file' (passar o mouse por cima do campo e clicar na setinha a direita)
 4. Selecionar um arquivo de imagem JPG ou PNG do seu computador
-5. Enviar a solicitação com método POST no ip local, porta 8000
+5. Enviar a solicitação com método POST no ip local, porta 8000, rota /resize
 
 ### Com cURL:
 1. Utilize o seguinte comando, substituindo o \<PATH\> pelo path do arquivo JPG ou PNG a partir da sua máquina (exemplo: /home/user/image.png). Troque o \<FILE\> pelo nome que desejar para a imagem redimensionada, resultado da request (não esqueça de usar a mesma extensão que o arquivo de input). O arquivo será criado na pasta do projeto:
